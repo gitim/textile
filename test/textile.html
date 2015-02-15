@@ -62,12 +62,14 @@
 					equals( textile('"link text":http://example.com/'),'<p><a href="http://example.com/">link text</a></p>','Links are represented by double quotes and a colon.');
 					equals( textile('"link text":/example'),'<p><a href="/example">link text</a></p>','The host name may be omitted for local link.');
 					equals( textile('"link text(with title)":http://example.com/'),'<p><a href="http://example.com/" title="with title">link text</a></p>','A title may be placed in parentheses');
+					equals( textile('Some text "the first link(with title)":http://example.com/ and "the second link(with another title)":http://example.com/ another text.'),'<p>Some text <a href="http://example.com/" title="with title">the first link</a> and <a href="http://example.com/" title="with another title">the second link</a> another text.</p>','Several links with titles.');
 				});
 
 				test("Images",function() {
 					equals( textile('!/img.gif!'), '<p><img src="/img.gif" /></p>','Use exclamation marks to insert an image tag.');
 					equals( textile('!http://example.com/img.gif!'),'<p><img src="http://example.com/img.gif" /></p>');
 					equals( textile('!/img.gif(alt text)!'),'<p><img src="/img.gif" title="alt text" alt="alt text" /></p>','Use parentheses to include alt text.');
+					equals( textile('Some text !/img.gif(alt text)! and !/img.gif(another alt text)! another text.'),'<p>Some text <img src="/img.gif" title="alt text" alt="alt text" /> and <img src="/img.gif" title="another alt text" alt="another alt text" /> another text.</p>','Several images with alt texts.');
 					equals( textile('!/img.gif!:http://example.com/'),'<p><a href="http://example.com/"><img src="/img.gif" /></a></p>','Images may be combined with links by using an image in place of the link text.');
 				});
 
