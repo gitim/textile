@@ -73,6 +73,13 @@
 					equals( textile('!/img.gif!:http://example.com/'),'<p><a href="http://example.com/"><img src="/img.gif" /></a></p>','Images may be combined with links by using an image in place of the link text.');
 				});
 
+				test("Iframes",function() {
+					equals( textile('!!http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/!!'), '<p><iframe width="450" height="225" src="http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/" frameborder="0" allowfullscreen="1"> </iframe></p>','Use exclamation marks to insert an iframe tag.');
+					equals( textile('!!http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/(1920x1080)!!'), '<p><iframe width="1920" height="1080" src="http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/" frameborder="0" allowfullscreen="1"> </iframe></p>','Use parentheses to set iframe window size.');
+					equals( textile('!!/tsow6vtpg8.312!!'), '<p><iframe width="450" height="225" src="/tsow6vtpg8.312" frameborder="0" allowfullscreen="1"> </iframe></p>','The host name may be omitted for local link.');
+					equals( textile('Some text !!http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/(1920x1080)!! and !!http://youtube.com/iframe/tsow6vpg8.32/(1024x768)!! another text.'),'<p>Some text <iframe width="1920" height="1080" src="http://video.yandex-team.ru/iframe/fokin/tsow6vtpg8.312/" frameborder="0" allowfullscreen="1"> </iframe> and <iframe width="1024" height="768" src="http://youtube.com/iframe/tsow6vpg8.32/" frameborder="0" allowfullscreen="1"> </iframe> another text.</p>','Several iframes with custom windows sizes.');
+				});
+
 				test("Blocks",function() {
 					equals( textile('h1. Heading 1'), '<h1>Heading 1</h1>');
 					equals( textile('h2. Heading 2'), '<h2>Heading 2</h2>');
