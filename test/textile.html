@@ -67,10 +67,17 @@
 
 				test("Images",function() {
 					equals( textile('!/img.gif!'), '<p><img src="/img.gif" /></p>','Use exclamation marks to insert an image tag.');
+					equals( textile('!(html_class)/img.gif!'), '<p><img class="html_class" src="/img.gif" /></p>','Use parentheses in the begining to include html class.');
+					equals( textile('!(html_class another-class)/img.gif!'), '<p><img class="html_class another-class" src="/img.gif" /></p>','Use parentheses in the begining to include several html classes.');
+					equals( textile('!{display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);}/img.gif!'), '<p><img style="display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);" src="/img.gif" /></p>','Use braces in the begining after classes (if there are) to include inline styles.');
+					equals( textile('!(html_class another-class){display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);}/img.gif!'), '<p><img class="html_class another-class" style="display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);" src="/img.gif" /></p>','Use braces in the begining after classes (if there are) to include inline styles.');
+					equals( textile('!{background-image: url("/back.png"); content: "!";}/img.gif!'), '<p><img style="background-image: url(&quot;/back.png&quot;); content: &quot;!&quot;;" src="/img.gif" /></p>','Quotes inside styles are replaced with `&quot;`.');
 					equals( textile('!http://example.com/img.gif!'),'<p><img src="http://example.com/img.gif" /></p>');
-					equals( textile('!/img.gif(alt text)!'),'<p><img src="/img.gif" title="alt text" alt="alt text" /></p>','Use parentheses to include alt text.');
+					equals( textile('!/img.gif(alt text)!'),'<p><img src="/img.gif" title="alt text" alt="alt text" /></p>','Use parentheses in the end to include alt text.');
 					equals( textile('Some text !/img.gif(alt text)! and !/img.gif(another alt text)! another text.'),'<p>Some text <img src="/img.gif" title="alt text" alt="alt text" /> and <img src="/img.gif" title="another alt text" alt="another alt text" /> another text.</p>','Several images with alt texts.');
 					equals( textile('!/img.gif!:http://example.com/'),'<p><a href="http://example.com/"><img src="/img.gif" /></a></p>','Images may be combined with links by using an image in place of the link text.');
+					equals( textile('!(html_class another-class){display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);}/img.gif(alt text)!:http://example.com/'), '<p><a href="http://example.com/"><img class="html_class another-class" style="display: inline-block; margin: 12px 23px;color:#999; -o-transform:rotate(45deg);" src="/img.gif" title="alt text" alt="alt text" /></a></p>','All image features are included.');
+					equals( textile('Some text !(html_class another-class){display: inline-block;}/img.gif(alt text)!:http://example.com/ some text !(test-class){margin: 2px 12px 0 23px;}/another_img.gif! !(html_class){-o-transform:rotate(45deg);}/pic.gif(another alt text)! the end.'), '<p>Some text <a href="http://example.com/"><img class="html_class another-class" style="display: inline-block;" src="/img.gif" title="alt text" alt="alt text" /></a> some text <img class="test-class" style="margin: 2px 12px 0 23px;" src="/another_img.gif" /> <img class="html_class" style="-o-transform:rotate(45deg);" src="/pic.gif" title="another alt text" alt="another alt text" /> the end.</p>','Several images with different features.');
 				});
 
 				test("Iframes",function() {
