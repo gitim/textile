@@ -1,3 +1,13 @@
+## 1.1.0
+
+      Minor Release
+
+  - Fix issue with several links or images with parentheses
+  - Add syntax for iframe (video)
+  - Add supporting html classes and inline styles in images.
+  - Fix bug with no textile formatting using `==` syntax.
+
+
 ## 1.0.2
 
       Minor Release

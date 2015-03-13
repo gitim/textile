@@ -1,6 +1,6 @@
 {
   "name": "textilejs",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Textile Parser, converts textile documents to HTML.",
   "license": "MIT",
   "main": "./lib/textile.js",
@@ -15,7 +15,8 @@
   "contributors": [
     { "name": "Nijiko Yonskai", "email": "nijikokun@gmail.com" },
     { "name": "Yulian Kuncheff" },
-    { "name": "Christian Perfect" }
+    { "name": "Christian Perfect" },
+    { "name": "Timur Gibadullin", "email": "ya.gitim@yandex.ru"}
   ],
   "keywords": [
     "textile",

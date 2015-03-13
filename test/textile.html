@@ -138,6 +138,8 @@
 					equals( textile('<pre>\nA HTML <b>example</b>.\n</pre>'),'<pre>\nA HTML &#60;b&#62;example&#60;/b&#62;.\n</pre>','The contents of explicit pre and code tags are escaped for display.');
 					equals( textile('<code>\nAnother HTML <b>example</b>.\n</code>'),'<p><code>\nAnother HTML &#60;b&#62;example&#60;/b&#62;.\n</code></p>');
 					equals( textile('<notextile>\np. Leave me alone\n</notextile>'),'<p>\np. Leave me alone\n</p>');
+					equals( textile('Superscript is written as ==        ^2^        == in Textile.'), '<p>Superscript is written as         ^2^         in Textile.</p>');
+					equals( textile('Superscript is written as ==!/img.gif!== in Textile.'), '<p>Superscript is written as !/img.gif! in Textile.</p>');
 				});
 
 				test("Alignment",function() {
